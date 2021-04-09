@@ -1,6 +1,7 @@
 tags
 objs
 *.sh
+*.swp
 
 # Prerequisites
 *.d
