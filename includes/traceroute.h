@@ -26,7 +26,7 @@ typedef struct s_tr_pckt
 	struct iphdr	ip;
 	struct icmphdr	hdr;
 	char			msg[BUFSIZE];
-}				t_tr_pkt;
+}				t_tr_pckt;
 
 typedef struct s_proto
 {
