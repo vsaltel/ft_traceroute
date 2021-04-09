@@ -34,16 +34,20 @@ static void	print_received(t_tr *tr, t_tr_pckt *pckt,
 	double	time;
 	char	*name;
 
-	name = tr->dest_name;
-	if (check_addr(name) && tr->fqdn)
-		name = tr->fqdn;
-	time = tr->aft.tv_sec * 1000.0 + tr->aft.tv_usec / 1000.0;
-	time = time - (tr->bef.tv_sec * 1000.0 + tr->bef.tv_usec / 1000.0);
-	set_rtt(tr, time);
-	ft_printf("%d %ld bytes from %s (%s): icmp_seq=%d ttl=%d time=%.2f ms\n",
-		tr->ttl, recv_bytes, name, recv_ip, tr->msg_count, pckt->ip.ttl, time);
-	if (pckt->hdr.type == ICMP_ECHOREPLY)
-		tr->state = 0;
+	if (recv_ip)
+	{
+		name = tr->dest_name;
+		if (check_addr(name) && tr->fqdn)
+			name = tr->fqdn;
+		time = tr->aft.tv_sec * 1000.0 + tr->aft.tv_usec / 1000.0;
+		time = time - (tr->bef.tv_sec * 1000.0 + tr->bef.tv_usec / 1000.0);
+		set_rtt(tr, time);
+		ft_printf("%2d %s (%s) %.2f ms\n", tr->ttl, name, recv_ip, , time);
+		if (pckt->hdr.type == ICMP_ECHOREPLY)
+			tr->state = 0;
+	}
+	else
+		ft_printf("%2d -> *\n", tr->ttl);
 }
 
 static void	print_non_received(t_tr *tr, t_tr_pckt *pckt,
