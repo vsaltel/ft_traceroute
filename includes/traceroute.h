@@ -94,7 +94,7 @@ int				traceroute(t_tr *tr);
 ** srcs/recv_msg.c
 */
 
-void			recv_msg(t_tr *tr, t_tr_pkt *pckt);
+void			recv_msg(t_tr *tr, t_tr_pckt *pckt);
 
 /*
 ** srcs/rev_dns.c
