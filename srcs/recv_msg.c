@@ -16,20 +16,15 @@ static void	print_received(t_tr *tr, t_tr_pckt *pckt,
 	double	time;
 	char	*name;
 
-	if (recv_ip)
-	{
-		name = recv_ip;
-		if (tr->fqdn)
-			name = tr->fqdn;
-		time = tr->aft.tv_sec * 1000.0 + tr->aft.tv_usec / 1000.0;
-		time = time - (tr->bef.tv_sec * 1000.0 + tr->bef.tv_usec / 1000.0);
-		set_rtt(tr, time);
-		ft_printf("%2d %s (%s) %.2f ms\n", tr->ttl, name, recv_ip, time);
-		if (pckt->hdr.type == ICMP_ECHOREPLY)
-			tr->state = 0;
-	}
-	else
-		ft_printf("%2d -> *\n", tr->ttl);
+	name = recv_ip;
+	if (tr->fqdn)
+		name = tr->fqdn;
+	time = tr->aft.tv_sec * 1000.0 + tr->aft.tv_usec / 1000.0;
+	time = time - (tr->bef.tv_sec * 1000.0 + tr->bef.tv_usec / 1000.0);
+	set_rtt(tr, time);
+	ft_printf("%2d %s (%s) %.2f ms\n", tr->ttl, name, recv_ip, time);
+	if (pckt->hdr.type == ICMP_ECHOREPLY)
+		tr->state = 0;
 }
 
 static void	print_non_received(t_tr *tr, t_tr_pckt *pckt,
@@ -54,6 +49,8 @@ void	recv_msg(t_tr *tr, t_tr_pckt *pckt)
 
 	ret = recvfrom(tr->sockfd, pckt, sizeof(*pckt),
 			0, tr->pr.sacrecv, &tr->pr.salen);
+	if (ret <= 0)
+		ft_printf("%2d -> *\n", tr->ttl);
 	gettimeofday(&tr->aft, NULL);
 	recv_ip = set_inetaddr(tr->pr.sacrecv);
 	tr->fqdn = get_fqdn_info(tr->pr.sacrecv);
