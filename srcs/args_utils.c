@@ -26,7 +26,7 @@ void	init_tr(t_tr *tr)
 	tr->dest_name = NULL;
 	tr->dest_ip = NULL;
 	tr->pid = getpid() & 0xffff;
-	tr->datalen = PING_PKT_S;
+	tr->datalen = TR_PKT_S;
 	tr->pr.sasend = NULL;
 	tr->pr.sacrecv = NULL;
 	tr->pr.salen = 0;
