@@ -20,7 +20,7 @@ static int	set_option(t_tr *tr, char **av,
 	return (0);
 }
 
-static int	set_option_loop(t_tr *tr, int ac,
+static int	set_option_loop(t_tr *tr,
 	char **av, int *n)
 {
 	int	x;
