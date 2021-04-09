@@ -43,7 +43,7 @@ int	get_args(t_tr *tr, int ac, char **av)
 	{
 		if (av[n][0] && av[n][0] == '-')
 		{
-			if (set_option_loop(tr, ac, av, &n))
+			if (set_option_loop(tr, av, &n))
 				return (1);
 		}
 		else if (tr->dest_name)
