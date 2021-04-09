@@ -40,7 +40,6 @@ static struct addrinfo	*get_addr_info(t_tr *tr)
 int	traceroute(t_tr *tr)
 {
 	struct addrinfo	*info;
-	int				sock;
 	int				ret;
 
 	gettimeofday(&tr->launch_time, NULL);
