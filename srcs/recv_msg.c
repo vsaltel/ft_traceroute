@@ -42,7 +42,7 @@ static void	print_received(t_tr *tr, t_tr_pckt *pckt,
 	set_rtt(tr, time);
 	ft_printf("%d %ld bytes from %s (%s): icmp_seq=%d ttl=%d time=%.2f ms\n",
 		tr->ttl, recv_bytes, name, recv_ip, tr->msg_count, pckt->ip.ttl, time);
-	if (pckt->hdr.type != ICMP_ECHOREPLY)
+	if (pckt->hdr.type == ICMP_ECHOREPLY)
 		tr->state = 0;
 }
 
