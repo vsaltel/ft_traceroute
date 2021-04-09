@@ -1,3 +1,7 @@
+tags
+objs
+*.sh
+
 # Prerequisites
 *.d
 
