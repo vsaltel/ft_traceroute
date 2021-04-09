@@ -10,24 +10,6 @@ static void	set_rtt(t_tr *tr, double time)
 	tr->rtt_sum_sq += time * time;
 }
 
-static int	check_addr(char *addr)
-{
-	int	i;
-	int	n;
-
-	i = 0;
-	n = 0;
-	while (addr[i])
-	{
-		if (addr[i] == '.')
-			n++;
-		i++;
-	}
-	if (n > 1)
-		return (0);
-	return (1);
-}
-
 static void	print_received(t_tr *tr, t_tr_pckt *pckt,
 	long recv_bytes, char *recv_ip)
 {
@@ -36,8 +18,8 @@ static void	print_received(t_tr *tr, t_tr_pckt *pckt,
 
 	if (recv_ip)
 	{
-		name = tr->dest_name;
-		if (check_addr(name) && tr->fqdn)
+		name = recv_ip;
+		if (tr->fqdn)
 			name = tr->fqdn;
 		time = tr->aft.tv_sec * 1000.0 + tr->aft.tv_usec / 1000.0;
 		time = time - (tr->bef.tv_sec * 1000.0 + tr->bef.tv_usec / 1000.0);
@@ -56,7 +38,7 @@ static void	print_non_received(t_tr *tr, t_tr_pckt *pckt,
 	char	*name;
 
 	name = recv_ip;
-	if (check_addr(name) && tr->fqdn)
+	if (tr->fqdn)
 		name = tr->fqdn;
 	if (!tr->q)
 		ft_printf(" %ld bytes from %s (%s): type = %d, code = %d\n",
