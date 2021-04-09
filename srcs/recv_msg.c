@@ -65,7 +65,7 @@ static void	print_non_received(t_tr *tr, t_tr_pckt *pckt,
 	tr->state = 0;
 }
 
-void	recv_msg(t_tr *tr, t_tr *pckt)
+void	recv_msg(t_tr *tr, t_tr_pckt *pckt)
 {
 	ssize_t	ret;
 	char	*recv_ip;
