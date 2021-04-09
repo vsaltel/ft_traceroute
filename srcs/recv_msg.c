@@ -55,7 +55,7 @@ static void	print_non_received(t_tr *tr, t_tr_pckt *pckt,
 {
 	char	*name;
 
-	name = tr->dest_name;
+	name = recv_ip;
 	if (check_addr(name) && tr->fqdn)
 		name = tr->fqdn;
 	if (!tr->q)
