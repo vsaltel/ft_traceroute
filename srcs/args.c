@@ -54,12 +54,12 @@ static int	set_option_loop(t_tr *tr, int ac,
 				return (1);
 			if (*n + 1 == ac)
 			{
-				ft_dprintf(2, "ft_ping: option requires an argument -- '%c'\n",
+				ft_dprintf(2, "ft_traceroute: option requires an argument -- '%c'\n",
 				av[*n][x]);
 				return (1);
 			}
 		}
-		return (set_option(ping, av, n, x));
+		return (set_option(tr, av, n, x));
 		if (set_option(tr, av, n, x))
 			return (1);
 	}
