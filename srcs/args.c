@@ -15,9 +15,14 @@ static int	check_options(t_tr *tr)
 		ft_dprintf(2, "ft_traceroute: illegal packet size\n");
 		return (1);
 	}
-	else if (tr->max_ttl <= 0 && tr->max_ttl > 255)
+	if (tr->max_ttl <= 0 && tr->max_ttl > 255)
 	{
 		ft_dprintf(2, "ft_traceroute: max hops cannot be more than 255\n");
+		return (1);
+	}
+	if (tr->datalen < 0 || tr->datalen > BUFSIZE)
+	{
+		ft_dprintf(2, "ft_traceroute: too big packetlen specified\n");
 		return (1);
 	}
 	return (0);
@@ -79,7 +84,11 @@ int	get_args(t_tr *tr, int ac, char **av)
 				return (1);
 		}
 		else if (tr->dest_name)
-			return (1);
+		{
+			if (tr->datalen != TR_PKT_S)
+				return (1);
+			tr->datalen = ft_atoi(av[n]);
+		}
 		else
 			tr->dest_name = strdup(av[n]);
 	}
