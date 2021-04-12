@@ -28,9 +28,9 @@ static int	set_option(t_tr *tr, char **av,
 {
 	if (av[*n][x] == 'h')
 		tr->h = 1;
-	if (av[*n][x] == 'f')
+	else if (av[*n][x] == 'f')
 		tr->ttl = ft_atoi(av[++(*n)]);
-	if (av[*n][x] == 'm')
+	else if (av[*n][x] == 'm')
 		tr->max_ttl = ft_atoi(av[++(*n)]);
 	else
 	{
