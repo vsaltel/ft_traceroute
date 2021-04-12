@@ -27,20 +27,6 @@ static void	print_received(t_tr *tr, t_tr_pckt *pckt,
 		tr->state = 0;
 }
 
-static void	print_non_received(t_tr *tr, t_tr_pckt *pckt,
-	long recv_bytes, char *recv_ip)
-{
-	char	*name;
-
-	name = recv_ip;
-	if (tr->fqdn)
-		name = tr->fqdn;
-	if (!tr->q)
-		ft_printf(" %ld bytes from %s (%s): type = %d, code = %d\n",
-			recv_bytes, name, recv_ip, pckt->hdr.type, pckt->hdr.code);
-	tr->state = 0;
-}
-
 void	recv_msg(t_tr *tr, t_tr_pckt *pckt)
 {
 	ssize_t	ret;
@@ -51,7 +37,7 @@ void	recv_msg(t_tr *tr, t_tr_pckt *pckt)
 			0, tr->pr.sacrecv, &tr->pr.salen);
 	if (ret <= 0)
 	{
-		ft_printf("%2d -> *\n", tr->ttl);
+		ft_printf("%2d *\n", tr->ttl);
 		return ;
 	}
 	gettimeofday(&tr->aft, NULL);

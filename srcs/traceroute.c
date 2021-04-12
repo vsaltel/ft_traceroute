@@ -6,7 +6,7 @@ static int	read_loop(t_tr *tr)
 
 	tr->state = 1;
 	signal(SIGINT, &catch_sigint);
-	while (tr->ttl < TTL_MAX && tr->state && tr->count_max)
+	while (tr->ttl < tr->max_ttl && tr->state && tr->count_max)
 	{
 		tr->sockfd = set_socket(tr);
 		if (!tr->sockfd || tr->sockfd < 0)

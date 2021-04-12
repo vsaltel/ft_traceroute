@@ -4,7 +4,7 @@
 # define BUFSIZE 1500
 # define TR_PKT_S 56
 # define IP_STR_SIZE 129
-# define TTL_MAX 30
+# define DEF_TTL_MAX 30
 # define RECV_TIMEOUT 1
 
 # include <stdio.h>
@@ -43,6 +43,7 @@ typedef struct s_tr
 	int				q;
 	int				d;
 	int				ttl;
+	int				max_ttl;
 	int				count_max;
 	struct timeval	launch_time;
 	struct timeval	bef;
