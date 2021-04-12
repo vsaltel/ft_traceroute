@@ -58,8 +58,8 @@ static int	set_option_loop(t_tr *tr, int ac,
 				av[*n][x]);
 				return (1);
 			}
+			return (set_option(tr, av, n, x));
 		}
-		return (set_option(tr, av, n, x));
 		if (set_option(tr, av, n, x))
 			return (1);
 	}
