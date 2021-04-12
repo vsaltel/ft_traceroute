@@ -16,6 +16,7 @@ static int	read_loop(t_tr *tr)
 		recv_msg(tr, &pckt);
 		tr->msg_count++;
 		tr->count_max--;
+		tr->ttl++;
 	}
 	return (0);
 }
