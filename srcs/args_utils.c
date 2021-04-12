@@ -13,7 +13,7 @@ void	init_tr(t_tr *tr)
 	tr->h = 0;
 	tr->q = 0;
 	tr->d = 0;
-	tr->ttl = 0;
+	tr->ttl = 1;
 	tr->max_ttl = DEF_TTL_MAX;
 	tr->count_max = -1;
 	tr->rtt_min = -1;
