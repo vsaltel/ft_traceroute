@@ -44,10 +44,7 @@ void	recv_msg(t_tr *tr, t_tr_pckt *pckt)
 	recv_ip = set_inetaddr(tr->pr.sacrecv);
 	tr->fqdn = get_fqdn_info(tr->pr.sacrecv);
 	recv_bytes = ret - sizeof(pckt->ip);
-	if (ret <= 0 || pckt->hdr.code != 0)
-		print_non_received(tr, pckt, recv_bytes, recv_ip);
-	else
-		print_received(tr, pckt, recv_bytes, recv_ip);
+	print_received(tr, pckt, recv_bytes, recv_ip);
 	if (ret > 0 && pckt->hdr.type == ICMP_ECHOREPLY)
 		tr->msg_recv_count++;
 	free(recv_ip);
