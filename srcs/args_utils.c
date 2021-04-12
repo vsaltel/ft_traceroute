@@ -14,7 +14,7 @@ void	init_tr(t_tr *tr)
 	tr->q = 0;
 	tr->d = 0;
 	tr->ttl = 0;
-	tr->max_ttl = DEF_TT_MAX;
+	tr->max_ttl = DEF_TTL_MAX;
 	tr->count_max = -1;
 	tr->rtt_min = -1;
 	tr->rtt_max = -1;
