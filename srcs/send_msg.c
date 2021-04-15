@@ -11,12 +11,12 @@ void	send_msg(void)
 	pckt->ip.ip_v = 4;
 	pckt->ip.ip_hl = 5;
 	pckt->ip.ip_tos = 0;
-	pckt->ip.ip_len = IPHDRLEN + ICMPHDRLEN;
+	pckt->ip.ip_len = sizeof(t_send_pckt);
 	pckt->ip.ip_id = g_tr.pid;
 	pckt->ip.ip_off = g_tr.df_bit;
 	pckt->ip.ip_p = IPPROTO_ICMP;
 	pckt->ip.ip_sum = 0;
-	pckt->ip.ip_dst = (struct in_addr)g_tr.pr.sasend->sin_addr;
+	pckt->ip.ip_dst = (struct in_addr)((struct sockaddr_in *)g_tr.pr.sasend)->sin_addr;
 	pckt->ip.ip_ttl = 0;
 
 
