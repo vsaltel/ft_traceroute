@@ -31,7 +31,7 @@ typedef struct s_recv_pckt
 typedef struct s_send_pckt
 {
 	struct iphdr	ip;
-	struct icmp		hdr;
+	struct icmp		icmp;
 }				t_send_pckt;
 
 typedef struct s_proto
