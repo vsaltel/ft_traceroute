@@ -7,6 +7,19 @@ void	send_msg(void)
 	t_send_pckt	*pckt;
 	char		sendbuf[BUFSIZE];
 
+	pckt->ip.ip_dst = kk
+	pckt->ip.ip_v = 4;
+	pckt->ip.ip_hl = 5;
+	pckt->ip.ip_tos = 0;
+	pckt->ip.ip_len = IPHDRLEN + ICMPHDRLEN;
+	pckt->ip.ip_id = g_tr.pid;
+	pckt->ip.ip_off = g_tr.df_bit;
+	pckt->ip.ip_p = IPPROTO_ICMP;
+	pckt->ip.ip_sum = 0;
+	pckt->ip.ip_dst = (struct in_addr)sasend->sin_addr;
+	pckt->ip.ip_ttl = 0;
+
+
 	pckt = (t_send_pckt *)sendbuf;
 	pckt->icmp.icmp_type = ICMP_ECHO;
 	pckt->icmp.icmp_code = 0;
