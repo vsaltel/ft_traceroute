@@ -7,7 +7,6 @@ void	send_msg(void)
 	t_send_pckt	*pckt;
 	char		sendbuf[BUFSIZE];
 
-	pckt->ip.ip_dst = kk
 	pckt->ip.ip_v = 4;
 	pckt->ip.ip_hl = 5;
 	pckt->ip.ip_tos = 0;
