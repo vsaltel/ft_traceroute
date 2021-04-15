@@ -7,6 +7,7 @@
 # define DEF_TTL_MAX 30
 # define RECV_TIMEOUT 1
 
+# include <errno.h>
 # include <stdio.h>
 # include <signal.h>
 # include <netdb.h>
