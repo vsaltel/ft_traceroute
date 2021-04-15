@@ -57,7 +57,7 @@ void	send_msg(void)
 	pckt->icmp.icmp_cksum = 0;
 	pckt->icmp.icmp_cksum = checksum((u_short *) &pckt->icmp, len);
 	gettimeofday(&g_tr.bef, NULL);
-	ret = sendto(g_tr.sockfd, sendbuf, sizeof(pckt) + g_tr.datalen, 0,
+	ret = sendto(g_tr.sockfd, sendbuf, sizeof(t_send_pckt) + g_tr.datalen, 0,
 		g_tr.pr.sasend, g_tr.pr.salen);
 	if (ret == -1)
 		ft_printf("ret = %d, %s\n", ret, strerror(errno));
