@@ -16,7 +16,7 @@ void	send_msg(void)
 	gettimeofday((struct timeval *)pckt->icmp.icmp_data, NULL);
 	len = 8 + g_tr.datalen;
 	pckt->icmp.icmp_cksum = 0;
-	pckt->icmp.icmp_cksum = checksum((u_short *) pckt->icmp, len);
+	pckt->icmp.icmp_cksum = checksum((u_short *) &pckt->icmp, len);
 	gettimeofday(&g_tr.bef, NULL);
 	ret = sendto(g_tr.sockfd, sendbuf, len, 0,
 			g_tr.pr.sasend, g_tr.pr.salen);
