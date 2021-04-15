@@ -7,6 +7,8 @@ void	send_msg(void)
 	t_send_pckt	*pckt;
 	char		sendbuf[BUFSIZE];
 
+	pckt = (t_send_pckt *)sendbuf;
+
 	pckt->ip.ip_v = 4;
 	pckt->ip.ip_hl = 5;
 	pckt->ip.ip_tos = 0;
@@ -19,7 +21,6 @@ void	send_msg(void)
 	pckt->ip.ip_ttl = 0;
 
 
-	pckt = (t_send_pckt *)sendbuf;
 	pckt->icmp.icmp_type = ICMP_ECHO;
 	pckt->icmp.icmp_code = 0;
 	pckt->icmp.icmp_id = g_tr.pid;
