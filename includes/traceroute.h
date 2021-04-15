@@ -32,7 +32,7 @@ typedef struct s_send_pckt
 {
 	struct iphdr	ip;
 	struct icmp		hdr;
-}				t_send_pckt
+}				t_send_pckt;
 
 typedef struct s_proto
 {
