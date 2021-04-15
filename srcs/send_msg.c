@@ -1,4 +1,5 @@
 #include "traceroute.h"
+/*
 void	send_msg(void)
 {
 	int			len;
@@ -25,7 +26,7 @@ void	send_msg(void)
 	if (ret >= 0)
 		g_tr.msg_sent++;
 }
-/*
+*/
 void	send_msg(void)
 {
 	int			len;
@@ -64,4 +65,3 @@ void	send_msg(void)
 	if (ret >= 0)
 		g_tr.msg_sent++;
 }
-*/
