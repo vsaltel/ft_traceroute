@@ -10,7 +10,7 @@ static void	set_rtt(t_tr *tr, double time)
 	tr->rtt_sum_sq += time * time;
 }
 
-static void	print_received(t_tr *tr, t_tr_pckt *pckt,
+static void	print_received(t_tr *tr, t_recv_pckt *pckt,
 	long recv_bytes, char *recv_ip)
 {
 	double	time;
@@ -27,7 +27,7 @@ static void	print_received(t_tr *tr, t_tr_pckt *pckt,
 		tr->state = 0;
 }
 
-void	recv_msg(t_tr *tr, t_tr_pckt *pckt)
+void	recv_msg(t_tr *tr, t_recv_pckt *pckt)
 {
 	ssize_t	ret;
 	char	*recv_ip;

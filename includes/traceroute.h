@@ -21,12 +21,18 @@
 
 # include "libft.h"
 
-typedef struct s_tr_pckt
+typedef struct s_recv_pckt
 {
 	struct iphdr	ip;
 	struct icmphdr	hdr;
 	char			msg[BUFSIZE];
-}				t_tr_pckt;
+}				t_recv_pckt;
+
+typedef struct s_send_pckt
+{
+	struct iphdr	ip;
+	struct icmp		hdr;
+}				t_send_pckt
 
 typedef struct s_proto
 {
@@ -42,6 +48,7 @@ typedef struct s_tr
 	int				v;
 	int				q;
 	int				d;
+	int				df_bit;
 	int				ttl;
 	int				max_ttl;
 	int				count_max;
@@ -95,7 +102,7 @@ int				traceroute(t_tr *tr);
 ** srcs/recv_msg.c
 */
 
-void			recv_msg(t_tr *tr, t_tr_pckt *pckt);
+void			recv_msg(t_tr *tr, t_recv_pckt *pckt);
 
 /*
 ** srcs/rev_dns.c

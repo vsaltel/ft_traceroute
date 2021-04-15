@@ -2,7 +2,7 @@
 
 static int	read_loop(t_tr *tr)
 {
-	t_tr_pckt	pckt;
+	t_recv_pckt	pckt;
 
 	tr->state = 1;
 	signal(SIGINT, &catch_sigint);

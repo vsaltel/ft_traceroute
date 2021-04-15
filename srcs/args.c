@@ -20,11 +20,6 @@ static int	check_options(t_tr *tr)
 		ft_dprintf(2, "ft_traceroute: max hops cannot be more than 255\n");
 		return (1);
 	}
-	if (tr->datalen < 0 || tr->datalen > BUFSIZE)
-	{
-		ft_dprintf(2, "ft_traceroute: too big packetlen specified\n");
-		return (1);
-	}
 	return (0);
 }
 
@@ -33,6 +28,8 @@ static int	set_option(t_tr *tr, char **av,
 {
 	if (av[*n][x] == 'h')
 		tr->h = 1;
+	if (av[*n][x] == 'F')
+		tr->df_bit = 0;
 	else if (av[*n][x] == 'f')
 		tr->ttl = ft_atoi(av[++(*n)]);
 	else if (av[*n][x] == 'm')
