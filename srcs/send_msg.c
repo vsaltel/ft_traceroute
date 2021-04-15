@@ -32,7 +32,8 @@ void	send_msg(void)
 	gettimeofday(&g_tr.bef, NULL);
 	ret = sendto(g_tr.sockfd, sendbuf, sizeof(pckt), 0,
 		g_tr.pr.sasend, g_tr.pr.salen);
-	ft_printf("ret = %d, %s\n", strerror(errno));
-	if (ret)
+	if (ret == -1)
+		ft_printf("ret = %d, %s\n", strerror(errno));
+	if (ret >= 0)
 		g_tr.msg_sent++;
 }
