@@ -33,6 +33,7 @@ typedef struct s_send_pckt
 {
 	struct ip		ip;
 	struct icmp		icmp;
+	char			msg[BUFSIZE];
 }				t_send_pckt;
 
 typedef struct s_proto

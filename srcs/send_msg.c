@@ -29,7 +29,6 @@ void	send_msg(void)
 */
 void	send_msg(void)
 {
-	int			len;
 	int			ret;
 	t_send_pckt	*pckt;
 	char		sendbuf[BUFSIZE];
@@ -51,13 +50,17 @@ void	send_msg(void)
 	pckt->icmp.icmp_code = 0;
 	pckt->icmp.icmp_id = g_tr.pid;
 	pckt->icmp.icmp_seq = g_tr.msg_sent;
-	ft_memset(pckt->icmp.icmp_data, 0xa5, g_tr.datalen);
-	gettimeofday((struct timeval *)pckt->icmp.icmp_data, NULL);
-	len = 8 + g_tr.datalen;
 	pckt->icmp.icmp_cksum = 0;
 	pckt->icmp.icmp_cksum = checksum((u_short *) &pckt->icmp, len);
+
+	int	i;
+	i = -1;
+	while (++i < g_tr.datalen)
+		pckt->msg[i] = (char)i;
+
+
 	gettimeofday(&g_tr.bef, NULL);
-	ret = sendto(g_tr.sockfd, sendbuf, sizeof(t_send_pckt) + g_tr.datalen, 0,
+	ret = sendto(g_tr.sockfd, sendbuf, sizeof(struct ip) + sizeof(struct icmp) + g_tr.datalen, 0,
 		g_tr.pr.sasend, g_tr.pr.salen);
 	if (ret == -1)
 		ft_printf("ret = %d, %s\n", ret, strerror(errno));
