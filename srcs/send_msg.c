@@ -30,8 +30,8 @@ void	send_msg(void)
 	pckt->icmp.icmp_cksum = 0;
 	pckt->icmp.icmp_cksum = checksum((u_short *) &pckt->icmp, len);
 	gettimeofday(&g_tr.bef, NULL);
-	ret = sendto(g_tr.sockfd, sendbuf, sizeof(len, 0,
-			g_tr.pr.sasend, g_tr.pr.salen);
+	ret = sendto(g_tr.sockfd, sendbuf, sizeof(pckt), 0,
+		g_tr.pr.sasend, g_tr.pr.salen);
 	if (ret)
 		g_tr.msg_sent++;
 }
