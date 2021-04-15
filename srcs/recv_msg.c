@@ -23,8 +23,7 @@ static void	print_received(t_tr *tr, t_recv_pckt *pckt,
 	time = time - (tr->bef.tv_sec * 1000.0 + tr->bef.tv_usec / 1000.0);
 	set_rtt(tr, time);
 	ft_printf("%2d %s (%s) %.2f ms\n", tr->ttl, name, recv_ip, time);
-	ft_printf("%s %s\n", recv_ip, tr->dest_ip);
-	if (pckt->hdr.type == ICMP_ECHOREPLY)
+	if (!ft_strcmp(recv_ip, tr->dest_ip))
 		tr->state = 0;
 }
 
