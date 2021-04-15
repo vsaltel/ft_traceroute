@@ -18,8 +18,7 @@ void	send_msg(void)
 	pckt->ip.ip_p = IPPROTO_ICMP;
 	pckt->ip.ip_sum = 0;
 	pckt->ip.ip_dst = (struct in_addr)((struct sockaddr_in *)g_tr.pr.sasend)->sin_addr;
-	pckt->ip.ip_ttl = 0;
-
+	pckt->ip.ip_ttl = g_tr.ttl;
 
 	pckt->icmp.icmp_type = ICMP_ECHO;
 	pckt->icmp.icmp_code = 0;
@@ -31,7 +30,7 @@ void	send_msg(void)
 	pckt->icmp.icmp_cksum = 0;
 	pckt->icmp.icmp_cksum = checksum((u_short *) &pckt->icmp, len);
 	gettimeofday(&g_tr.bef, NULL);
-	ret = sendto(g_tr.sockfd, sendbuf, len, 0,
+	ret = sendto(g_tr.sockfd, sendbuf, sizeof(len, 0,
 			g_tr.pr.sasend, g_tr.pr.salen);
 	if (ret)
 		g_tr.msg_sent++;
