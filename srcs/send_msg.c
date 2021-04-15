@@ -51,7 +51,7 @@ void	send_msg(void)
 	pckt->icmp.icmp_id = g_tr.pid;
 	pckt->icmp.icmp_seq = g_tr.msg_sent;
 	pckt->icmp.icmp_cksum = 0;
-	pckt->icmp.icmp_cksum = checksum((u_short *) &pckt->icmp, len);
+	pckt->icmp.icmp_cksum = checksum((u_short *) &pckt->icmp, struct(icmp) + g_tr.datalen);
 
 	int	i;
 	i = -1;
