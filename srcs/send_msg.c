@@ -24,7 +24,7 @@ void	send_msg(void)
 		g_tr.msg_sent++;
 }
 */
-void	send_msg(t_send_pckt pckt)
+void	send_msg(t_send_pckt *pckt)
 {
 	int			ret;
 

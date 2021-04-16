@@ -41,7 +41,7 @@ static int	read_loop(t_tr *tr)
 	{
 		if (!tr->sockfd || tr->sockfd < 0)
 			return (-4);
-		send_msg(s_pckt);
+		send_msg(&s_pckt);
 		ft_bzero(&r_pckt, sizeof(r_pckt));
 		recv_msg(tr, &r_pckt);
 		tr->msg_count++;
