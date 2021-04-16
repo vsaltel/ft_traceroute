@@ -27,7 +27,7 @@ void	init_tr(t_tr *tr)
 	tr->fqdn = NULL;
 	tr->dest_name = NULL;
 	tr->dest_ip = NULL;
-	tr->pid = getpid() & 0xffff;
+	tr->pid = getpid();
 	tr->datalen = TR_PKT_S;
 	tr->pr.sasend = NULL;
 	tr->pr.sacrecv = NULL;
