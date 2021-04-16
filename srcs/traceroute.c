@@ -4,8 +4,7 @@ static void	set_send_pckt(t_send_pckt *pckt)
 {
 	int	i;
 
-	ft_printf("%p %p %p\n", &pckt->ip, &pckt->icmp, &pckt->msg);
-	ft_bzero(pckt->msg, BUFSIZE - sizeof(struct icmp) - sizeof(struct ip));
+	ft_bzero(pckt, BUFSIZE);
 	i = -1;
 	while (++i < g_tr.datalen)
 		pckt->msg[i] = (char)i;
