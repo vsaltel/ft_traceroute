@@ -47,6 +47,7 @@ int	traceroute(t_tr *tr)
 	info = get_addr_info(tr);
 	if (!info)
 		return (-2);
+	ft_printf("2 %p\n", info->ai_addr);
 	tr->pr.sasend = info->ai_addr;
 	tr->pr.sacrecv = malloc(info->ai_addrlen);
 	ft_bzero(tr->pr.sacrecv, info->ai_addrlen);

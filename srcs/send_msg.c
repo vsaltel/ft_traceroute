@@ -37,10 +37,13 @@ void	send_msg(void)
 	pckt->ip.ip_tos = 0;
 	pckt->ip.ip_len = sizeof(struct ip) + sizeof(struct icmp);
 	pckt->ip.ip_id = g_tr.pid;
-	pckt->ip.ip_off = g_tr.df_bit;
+	pckt->ip.ip_off = 64;
+	//pckt->ip.ip_off = g_tr.df_bit;
 	pckt->ip.ip_p = IPPROTO_ICMP;
 	pckt->ip.ip_sum = 0;
-	pckt->ip.ip_dst = (struct in_addr)((struct sockaddr_in *)g_tr.pr.sasend)->sin_addr;
+	ft_printf("1 %p\n", g_tr.pr.sasend);
+	pckt->ip.ip_dst = (struct in_addr)
+		((struct sockaddr_in *)g_tr.pr.sasend)->sin_addr;
 	pckt->ip.ip_ttl = g_tr.ttl;
 
 	pckt->icmp.icmp_type = ICMP_ECHO;
@@ -50,7 +53,7 @@ void	send_msg(void)
 	pckt->icmp.icmp_cksum = 0;
 	pckt->icmp.icmp_cksum = checksum((u_short *) &pckt->icmp, sizeof(struct icmp) + g_tr.datalen);
 
-	ft_bzero(pckt->msg, BUFSIZE - sizeof(struct icmp) - sizeof(struct ip));
+	//ft_bzero(pckt->msg, BUFSIZE - sizeof(struct icmp) - sizeof(struct ip));
 	int	i;
 	i = -1;
 	while (++i < g_tr.datalen)
