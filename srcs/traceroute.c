@@ -36,9 +36,9 @@ static int	read_loop(t_tr *tr)
 	tr->state = 1;
 	signal(SIGINT, &catch_sigint);
 	set_send_pckt(&s_pckt);
-	tr->sockfd = set_socket(tr);
 	while (tr->ttl < tr->max_ttl && tr->state && tr->count_max)
 	{
+		tr->sockfd = set_socket(tr);
 		if (!tr->sockfd || tr->sockfd < 0)
 			return (-4);
 		send_msg(&s_pckt);

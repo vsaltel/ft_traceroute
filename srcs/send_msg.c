@@ -31,9 +31,6 @@ void	send_msg(t_send_pckt *pckt)
 	gettimeofday(&g_tr.bef, NULL);
 	ret = sendto(g_tr.sockfd, pckt, sizeof(struct ip) + sizeof(struct icmp) + g_tr.datalen, 0,
 		g_tr.pr.sasend, g_tr.pr.salen);
-	if (ret == -1)
-		ft_printf("ret = %d, %s\n", ret, strerror(errno));
 	ft_printf("ret = %d\n", ret);
-	if (ret >= 0)
-		g_tr.msg_sent++;
+	g_tr.msg_sent++;
 }
