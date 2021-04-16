@@ -16,10 +16,10 @@ int	set_socket(t_tr *tr)
 	on = 1;
 	setsockopt(sock, IPPROTO_IP, IP_HDRINCL, &on, sizeof(int));
 	size = 60 * 1024;
-	setsockopt(sock, SOL_SOCKET, SO_RCVBUF, &size, sizeof(size));
+	//setsockopt(sock, SOL_SOCKET, SO_RCVBUF, &size, sizeof(size));
     timeout.tv_sec = 1;
     timeout.tv_usec = 0;
 	setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO, (char *)&timeout, sizeof(timeout));
-	setsockopt(sock, IPPROTO_IP, IP_TTL, &tr->ttl, sizeof(tr->ttl));
+	//setsockopt(sock, IPPROTO_IP, IP_TTL, &tr->ttl, sizeof(tr->ttl));
 	return (sock);
 }

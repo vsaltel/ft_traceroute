@@ -14,7 +14,7 @@ static void	set_send_pckt(t_send_pckt *pckt)
 	pckt->ip.ip_sum = 0;
 	pckt->ip.ip_dst = (struct in_addr)
 		((struct sockaddr_in *)g_tr.pr.sasend)->sin_addr;
-	pckt->ip.ip_ttl = g_tr.ttl;
+	pckt->ip.ip_ttl = 0;
 	pckt->icmp.icmp_type = ICMP_ECHO;
 	pckt->icmp.icmp_code = 0;
 	pckt->icmp.icmp_id = g_tr.pid;
@@ -36,18 +36,18 @@ static int	read_loop(t_tr *tr)
 	tr->state = 1;
 	signal(SIGINT, &catch_sigint);
 	set_send_pckt(&s_pckt);
+	tr->sockfd = set_socket(tr);
 	while (tr->ttl < tr->max_ttl && tr->state && tr->count_max)
 	{
-		tr->sockfd = set_socket(tr);
 		if (!tr->sockfd || tr->sockfd < 0)
 			return (-4);
+		s_pckt.ip.ip_ttl = tr->ttl;
 		send_msg(&s_pckt);
 		ft_bzero(&r_pckt, sizeof(r_pckt));
 		recv_msg(tr, &r_pckt);
 		tr->msg_count++;
 		tr->count_max--;
 		tr->ttl++;
-		s_pckt.ip.ip_ttl = tr->ttl;
 	}
 	return (0);
 }
