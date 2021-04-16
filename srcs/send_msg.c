@@ -50,7 +50,7 @@ void	send_msg(void)
 	pckt->icmp.icmp_cksum = 0;
 	pckt->icmp.icmp_cksum = checksum((u_short *) &pckt->icmp, sizeof(struct icmp) + g_tr.datalen);
 
-	ft_bzero(pckt->msg, BUFSIZE);
+	//ft_bzero(pckt->msg, BUFSIZE);
 	int	i;
 	i = -1;
 	while (++i < g_tr.datalen)
