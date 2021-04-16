@@ -14,7 +14,7 @@ int	set_socket(t_tr *tr)
 		return (-1);
 	}
 	on = 1;
-	//setsockopt(sock, IPPROTO_IP, IP_HDRINCL, &on, sizeof(int));
+	setsockopt(sock, IPPROTO_IP, IP_HDRINCL, &on, sizeof(int));
 	size = 60 * 1024;
 	setsockopt(sock, SOL_SOCKET, SO_RCVBUF, &size, sizeof(size));
     timeout.tv_sec = 1;
