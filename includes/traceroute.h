@@ -2,7 +2,7 @@
 # define TRACEROUTE_H
 
 # define BUFSIZE 1500
-# define TR_PKT_S 56
+# define TR_PKT_S 60
 # define IP_STR_SIZE 129
 # define DEF_TTL_MAX 30
 # define RECV_TIMEOUT 1

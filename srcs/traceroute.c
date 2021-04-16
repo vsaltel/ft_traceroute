@@ -24,14 +24,15 @@ static void	set_send_pckt(t_send_pckt *pckt)
 	pckt->icmp.icmp_id = g_tr.pid;
 	pckt->icmp.icmp_seq = g_tr.msg_sent;
 	pckt->icmp.icmp_cksum = 0;
-	pckt->icmp.icmp_cksum = checksum((u_short *)&pckt->icmp, sizeof(struct icmp) + g_tr.datalen);
+	pckt->icmp.icmp_cksum = checksum((u_short *)&pckt->icmp,
+		sizeof(struct icmp) + g_tr.datalen);
 }
 
 static int	read_loop(t_tr *tr)
 {
 	t_recv_pckt	r_pckt;
-	char		sbuf[BUFSIZE];
 	t_send_pckt *s_pckt;
+	char		sbuf[BUFSIZE];
 
 	s_pckt = (t_send_pckt *)sbuf;	
 	tr->state = 1;
