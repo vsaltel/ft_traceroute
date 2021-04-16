@@ -41,6 +41,7 @@ static int	read_loop(t_tr *tr)
 	{
 		if (!tr->sockfd || tr->sockfd < 0)
 			return (-4);
+		ft_printf("ttl %d\n", s_pckt.ip.ip_ttl);
 		send_msg(&s_pckt);
 		ft_bzero(&r_pckt, sizeof(r_pckt));
 		recv_msg(tr, &r_pckt);
