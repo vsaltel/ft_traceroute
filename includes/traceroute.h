@@ -118,7 +118,7 @@ char			*get_fqdn_info(struct sockaddr *addr);
 ** srcs/send_msg.c
 */
 
-void			send_msg(t_send_pckt *pckt);
+void			send_msg(void *pckt);
 
 /*
 ** srcs/socket.c

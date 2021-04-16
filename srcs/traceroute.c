@@ -4,6 +4,10 @@ static void	set_send_pckt(t_send_pckt *pckt)
 {
 	int	i;
 
+	//ft_bzero(pckt->msg, BUFSIZE - sizeof(struct icmp) - sizeof(struct ip));
+	i = -1;
+	while (++i < g_tr.datalen)
+		pckt->msg[i] = (char)i;
 	pckt->ip.ip_v = 4;
 	pckt->ip.ip_hl = 5;
 	pckt->ip.ip_tos = 0;
@@ -20,19 +24,16 @@ static void	set_send_pckt(t_send_pckt *pckt)
 	pckt->icmp.icmp_id = g_tr.pid;
 	pckt->icmp.icmp_seq = g_tr.msg_sent;
 	pckt->icmp.icmp_cksum = 0;
-	pckt->icmp.icmp_cksum = checksum((u_short *) &pckt->icmp, sizeof(struct icmp) + g_tr.datalen);
-
-	//ft_bzero(pckt->msg, BUFSIZE - sizeof(struct icmp) - sizeof(struct ip));
-	i = -1;
-	while (++i < g_tr.datalen)
-		pckt->msg[i] = (char)i;
+	pckt->icmp.icmp_cksum = checksum((u_short *)&pckt->icmp, sizeof(struct icmp) + g_tr.datalen);
 }
 
 static int	read_loop(t_tr *tr)
 {
 	t_recv_pckt	r_pckt;
-	t_send_pckt s_pckt;
+	char		sbuf[BUFSIZE];
+	t_send_pckt *s_pckt;
 
+	s_pckt = (t_send_pckt *)sbuf;	
 	tr->state = 1;
 	signal(SIGINT, &catch_sigint);
 	set_send_pckt(&s_pckt);
@@ -42,7 +43,7 @@ static int	read_loop(t_tr *tr)
 		if (!tr->sockfd || tr->sockfd < 0)
 			return (-4);
 		s_pckt.ip.ip_ttl = tr->ttl;
-		send_msg(&s_pckt);
+		send_msg(sbuf);
 		ft_bzero(&r_pckt, sizeof(r_pckt));
 		recv_msg(tr, &r_pckt);
 		tr->msg_count++;
