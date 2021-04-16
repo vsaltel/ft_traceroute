@@ -35,7 +35,7 @@ void	recv_msg(t_tr *tr, t_recv_pckt *pckt)
 
 	ret = recvfrom(tr->sockfd, pckt, sizeof(*pckt),
 			0, tr->pr.sacrecv, &tr->pr.salen);
-	ft_printf("%d receiv\n", ret);
+	ft_printf("%d receiv %s\n", ret, strerror(errno));
 	if (ret <= 0)
 	{
 		ft_printf("%2d *\n", tr->ttl);
