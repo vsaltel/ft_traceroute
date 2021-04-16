@@ -35,7 +35,7 @@ void	send_msg(void)
 	pckt->ip.ip_v = 4;
 	pckt->ip.ip_hl = 5;
 	pckt->ip.ip_tos = 0;
-	pckt->ip.ip_len = sizeof(t_send_pckt);
+	pckt->ip.ip_len = sizeof(struct ip) + sizeof(struct icmp);
 	pckt->ip.ip_id = g_tr.pid;
 	pckt->ip.ip_off = g_tr.df_bit;
 	pckt->ip.ip_p = IPPROTO_ICMP;
@@ -50,6 +50,7 @@ void	send_msg(void)
 	pckt->icmp.icmp_cksum = 0;
 	pckt->icmp.icmp_cksum = checksum((u_short *) &pckt->icmp, sizeof(struct icmp) + g_tr.datalen);
 
+	ft_bzero(msg, BUFSIZE);
 	int	i;
 	i = -1;
 	while (++i < g_tr.datalen)
