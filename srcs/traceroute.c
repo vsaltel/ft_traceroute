@@ -42,7 +42,7 @@ static int	read_loop(t_tr *tr)
 	{
 		if (!tr->sockfd || tr->sockfd < 0)
 			return (-4);
-		s_pckt.ip.ip_ttl = tr->ttl;
+		s_pckt->ip.ip_ttl = tr->ttl;
 		send_msg(sbuf);
 		ft_bzero(&r_pckt, sizeof(r_pckt));
 		recv_msg(tr, &r_pckt);
