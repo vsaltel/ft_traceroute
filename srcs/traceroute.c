@@ -1,13 +1,29 @@
 #include "traceroute.h"
 
+static void	read_one(t_tr *tr, char *sbuf, t_recv_pckt *r_pckt)
+{
+	char		*last_ip;
+	int			n;
+
+	last_ip = NULL;
+	n = -1;
+	ft_printf("%2d", tr->ttl);
+	while (++n < 3)
+	{
+		send_msg(sbuf);
+		recv_msg(tr, r_pckt, &last_ip);
+	}
+	ft_printf("\n");
+	free(last_ip);
+	last_ip = NULL;
+}
+
 static int	read_loop(t_tr *tr)
 {
 	t_recv_pckt	r_pckt;
 	t_send_pckt *s_pckt;
 	char		sbuf[BUFSIZE];
-	char		*last_ip;
 
-	last_ip = NULL;
 	s_pckt = (t_send_pckt *)sbuf;	
 	tr->state = 1;
 	signal(SIGINT, &catch_sigint);
@@ -18,16 +34,7 @@ static int	read_loop(t_tr *tr)
 		if (!tr->sockfd || tr->sockfd < 0)
 			return (-4);
 		s_pckt->ip.ip_ttl = tr->ttl;
-		send_msg(sbuf);
-		ft_printf("%2d", tr->ttl);
-		recv_msg(tr, &r_pckt, &last_ip);
-		send_msg(sbuf);
-		recv_msg(tr, &r_pckt, &last_ip);
-		send_msg(sbuf);
-		recv_msg(tr, &r_pckt, &last_ip);
-		ft_printf("\n");
-		free(last_ip);
-		last_ip = NULL;
+		
 		tr->msg_count++;
 		tr->count_max--;
 		tr->ttl++;
