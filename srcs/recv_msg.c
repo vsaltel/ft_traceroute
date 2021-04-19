@@ -41,7 +41,7 @@ void	recv_msg(t_tr *tr, t_recv_pckt *pckt, char **last_ip)
 			0, tr->pr.sacrecv, &tr->pr.salen);
 	if (ret <= 0)
 	{
-		printf(" *", tr->ttl);
+		printf(" *");
 		return ;
 	}
 	gettimeofday(&tr->aft, NULL);
