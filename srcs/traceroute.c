@@ -5,7 +5,9 @@ static int	read_loop(t_tr *tr)
 	t_recv_pckt	r_pckt;
 	t_send_pckt *s_pckt;
 	char		sbuf[BUFSIZE];
+	char		*last_ip;
 
+	last_ip = NULL;
 	s_pckt = (t_send_pckt *)sbuf;	
 	tr->state = 1;
 	signal(SIGINT, &catch_sigint);
@@ -17,8 +19,16 @@ static int	read_loop(t_tr *tr)
 			return (-4);
 		s_pckt->ip.ip_ttl = tr->ttl;
 		send_msg(sbuf);
-		ft_bzero(&r_pckt, sizeof(r_pckt));
-		recv_msg(tr, &r_pckt);
+		//ft_bzero(&r_pckt, sizeof(r_pckt));
+		ft_printf("%2d", tr->ttl);
+		recv_msg(tr, &r_pckt, &last_ip);
+		send_msg(sbuf);
+		recv_msg(tr, &r_pckt, &last_ip);
+		send_msg(sbuf);
+		recv_msg(tr, &r_pckt, &last_ip);
+		ft_printf("\n");
+		free(last_ip);
+		last_ip = NULL;
 		tr->msg_count++;
 		tr->count_max--;
 		tr->ttl++;
