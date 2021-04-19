@@ -118,13 +118,14 @@ char			*get_fqdn_info(struct sockaddr *addr);
 ** srcs/send_msg.c
 */
 
+void			set_send_pckt(t_send_pckt *pckt);
 void			send_msg(void *pckt);
 
 /*
 ** srcs/socket.c
 */
 
-int				set_socket(t_tr *tr);
+int				set_socket(void);
 
 /*
 ** srcs/print.c

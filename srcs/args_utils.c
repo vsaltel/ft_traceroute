@@ -13,7 +13,8 @@ void	init_tr(t_tr *tr)
 	tr->h = 0;
 	tr->q = 0;
 	tr->d = 0;
-	tr->df_bit = 64;
+	tr->df_bit = ntohs(IP_DF);
+	ft_printf("df %d %d\n", IP_DF, tr->df_bit)
 	tr->ttl = 1;
 	tr->max_ttl = DEF_TTL_MAX;
 	tr->count_max = -1;
