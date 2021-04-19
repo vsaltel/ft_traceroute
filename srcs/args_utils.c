@@ -14,6 +14,7 @@ void	init_tr(t_tr *tr)
 	tr->q = 0;
 	tr->d = 0;
 	tr->df_bit = ntohs(IP_DF);
+	tr->nqueries = 3;
 	tr->ttl = 1;
 	tr->max_ttl = DEF_TTL_MAX;
 	tr->count_max = -1;

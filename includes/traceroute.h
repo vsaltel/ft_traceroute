@@ -51,6 +51,7 @@ typedef struct s_tr
 	int				q;
 	int				d;
 	int				df_bit;
+	int				nqueries;
 	int				ttl;
 	int				max_ttl;
 	int				count_max;
@@ -146,5 +147,6 @@ void			catch_sigalrm(int signal);
 
 unsigned short	checksum(void *b, int len);
 void			print_usage(void);
+int				return_error(char *err, int val);
 
 #endif

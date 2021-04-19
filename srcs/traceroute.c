@@ -8,7 +8,7 @@ static void	read_one(t_tr *tr, char *sbuf, t_recv_pckt *r_pckt)
 	last_ip = NULL;
 	n = -1;
 	printf("%2d ", tr->ttl);
-	while (++n < 3)
+	while (++n < tr->nqueries)
 	{
 		send_msg(sbuf);
 		recv_msg(tr, r_pckt, &last_ip);
