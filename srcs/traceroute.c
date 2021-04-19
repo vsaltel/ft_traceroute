@@ -34,7 +34,7 @@ static int	read_loop(t_tr *tr)
 		if (!tr->sockfd || tr->sockfd < 0)
 			return (-4);
 		s_pckt->ip.ip_ttl = tr->ttl;
-		
+		read_one(tr, sbuf, &r_pckt);		
 		tr->msg_count++;
 		tr->count_max--;
 		tr->ttl++;
