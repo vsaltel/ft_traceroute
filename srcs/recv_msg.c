@@ -18,14 +18,14 @@ static void	print_received(t_tr *tr, char *recv_ip, char **last_ip)
 	name = recv_ip;
 	if (tr->fqdn)
 		name = tr->fqdn;
-	printf(" time %ld %f  ", (tr->aft.tv_usec - tr->bef.tv_usec) ,((double)tr->aft.tv_usec - (double)tr->bef.tv_usec) / 1000.0);
+	//printf(" time %ld %f  ", (tr->aft.tv_usec - tr->bef.tv_usec) ,((double)tr->aft.tv_usec - (double)tr->bef.tv_usec) / 1000.0);
 	time = tr->aft.tv_sec * 1000.0 + tr->aft.tv_usec / 1000.0;
 	time = time - (tr->bef.tv_sec * 1000.0 + tr->bef.tv_usec / 1000.0);
 	set_rtt(tr, time);
 	if (!*last_ip || ft_strcmp(recv_ip, *last_ip))
-		ft_printf(" %s (%s)  %.2f ms ", name, recv_ip, time);
+		printf(" %s (%s)  %.2f ms ", name, recv_ip, time);
 	else
-		ft_printf(" %.2f ms ", time); 
+		printf(" %.2f ms ", time); 
 	if (last_ip && *last_ip)
 		free(*last_ip);
 	*last_ip = recv_ip;
