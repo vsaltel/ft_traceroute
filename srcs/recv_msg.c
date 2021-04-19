@@ -50,6 +50,5 @@ void	recv_msg(t_tr *tr, t_recv_pckt *pckt, char **last_ip)
 	print_received(tr, recv_ip, last_ip);
 	if (ret > 0 && pckt->hdr.type == ICMP_ECHOREPLY)
 		tr->msg_recv_count++;
-	free(recv_ip);
 	free(tr->fqdn);
 }
