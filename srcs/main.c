@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 	ret = 0;
 	if (getuid() != 0)
 	{
-		ft_printf("ft_traceroute: need root privilege\n");
+		printf("ft_traceroute: need root privilege\n");
 		return (-1);
 	}
 	init_tr(&g_tr);

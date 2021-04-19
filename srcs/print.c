@@ -36,9 +36,9 @@ void	print_final_stats(t_tr *tr)
 	total_time = total_time - \
 		(tr->launch_time.tv_sec * 1000 + tr->launch_time.tv_usec / 1000);
 	if (tr->q)
-		ft_printf("\n");
-	ft_printf("--- %s tr statistics ---\n", tr->dest_name);
-	ft_printf("%d packets transmitted, %d received, "
+		printf("\n");
+	printf("--- %s tr statistics ---\n", tr->dest_name);
+	printf("%d packets transmitted, %d received, "
 		"\%d%% packet loss, time: %ld ms\n",
 		tr->msg_count, tr->msg_recv_count,
 		((tr->msg_count - tr->msg_recv_count) / tr->msg_count) * 100,
@@ -48,7 +48,7 @@ void	print_final_stats(t_tr *tr)
 		mean = tr->rtt_sum / tr->msg_recv_count;
 		smean = tr->rtt_sum_sq / tr->msg_recv_count;
 		rtt_mdev = square_root(smean - (mean * mean));
-		ft_printf("rtt min/avg/max/mdev = %.3f/%.3f/%.3f/%.3f ms\n",
+		printf("rtt min/avg/max/mdev = %.3f/%.3f/%.3f/%.3f ms\n",
 			tr->rtt_min, mean, tr->rtt_max, rtt_mdev);
 	}
 }

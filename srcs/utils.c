@@ -23,6 +23,6 @@ unsigned short	checksum(void *b, int len)
 
 void	print_usage(void)
 {
-	ft_dprintf(2, "usage: ft_traceroute [-hvqD] "
+	dprintf(2, "usage: ft_traceroute [-hvqD] "
 		"[-c count] [-s packetsize] [-t ttl] host\n");
 }

@@ -6,18 +6,18 @@ static int	check_options(t_tr *tr)
 		return (1);
 	if (tr->ttl <= 0 || tr->ttl > 255 || tr->ttl >= tr->max_ttl)
 	{
-		ft_dprintf(2,
+		dprintf(2,
 		"ft_traceroute: first hop out of range\n");
 		return (1);
 	}
 	if (tr->datalen < 0 || tr->datalen > BUFSIZE)
 	{
-		ft_dprintf(2, "ft_traceroute: illegal packet size\n");
+		dprintf(2, "ft_traceroute: illegal packet size\n");
 		return (1);
 	}
 	if (tr->max_ttl <= 0 && tr->max_ttl > 255)
 	{
-		ft_dprintf(2, "ft_traceroute: max hops cannot be more than 255\n");
+		dprintf(2, "ft_traceroute: max hops cannot be more than 255\n");
 		return (1);
 	}
 	return (0);
@@ -36,7 +36,7 @@ static int	set_option(t_tr *tr, char **av,
 		tr->max_ttl = ft_atoi(av[++(*n)]);
 	else
 	{
-		ft_dprintf(2, "ft_traceroute: invalid option -- '%c'\n", av[*n][x]);
+		dprintf(2, "ft_traceroute: invalid option -- '%c'\n", av[*n][x]);
 		return (1);
 	}
 	return (0);
@@ -56,7 +56,7 @@ static int	set_option_loop(t_tr *tr, int ac,
 				return (1);
 			if (*n + 1 == ac)
 			{
-				ft_dprintf(2, "ft_traceroute: option requires an argument -- '%c'\n",
+				dprintf(2, "ft_traceroute: option requires an argument -- '%c'\n",
 				av[*n][x]);
 				return (1);
 			}

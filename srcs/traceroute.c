@@ -50,7 +50,7 @@ static struct addrinfo	*get_addr_info(t_tr *tr)
 	if (!info)
 		return (NULL);
 	tr->dest_ip = set_inetaddr(info->ai_addr);
-	ft_printf("ft_traceroute to %s (%s), %d hops max, %d byte packets\n",
+	printf("ft_traceroute to %s (%s), %d hops max, %d byte packets\n",
 		info->ai_canonname ? info->ai_canonname : tr->dest_name,
 		tr->dest_ip, tr->max_ttl, tr->datalen);
 	if (info->ai_family != AF_INET)

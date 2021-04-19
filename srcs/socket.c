@@ -9,7 +9,7 @@ int	set_socket(void)
 	sock = socket(AF_INET, SOCK_RAW, IPPROTO_ICMP);
 	if (sock < 0)
 	{
-		ft_dprintf(2, "ft_traceroute: fail to create socket\n");
+		dprintf(2, "ft_traceroute: fail to create socket\n");
 		return (-1);
 	}
 	on = 1;
