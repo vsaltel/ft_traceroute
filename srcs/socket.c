@@ -15,7 +15,10 @@ int	set_socket(t_tr *tr)
 	on = 1;
 	setsockopt(sock, IPPROTO_IP, IP_HDRINCL, &on, sizeof(int));
     timeout.tv_sec = tr->wait_time;
-    timeout.tv_usec = 0;
+	if (tr->wait_time == 0)
+    	timeout.tv_usec = 1;
+	else
+    	timeout.tv_usec = 0;
 	setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO, (char *)&timeout, sizeof(timeout));
 	return (sock);
 }
