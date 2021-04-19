@@ -22,9 +22,9 @@ static void	print_received(t_tr *tr, char *recv_ip, char **last_ip)
 	time = time - (tr->bef.tv_sec * 1000.0 + tr->bef.tv_usec / 1000.0);
 	set_rtt(tr, time);
 	if (!*last_ip || ft_strcmp(recv_ip, *last_ip))
-		ft_printf("  %s (%s)  %.2f ms", name, recv_ip, time);
+		ft_printf(" %s (%s)  %.2f ms ", name, recv_ip, time);
 	else
-		ft_printf("  %.2f ms", time); 
+		ft_printf(" %.2f ms ", time); 
 	if (last_ip && *last_ip)
 		free(*last_ip);
 	*last_ip = recv_ip;
@@ -41,7 +41,7 @@ void	recv_msg(t_tr *tr, t_recv_pckt *pckt, char **last_ip)
 			0, tr->pr.sacrecv, &tr->pr.salen);
 	if (ret <= 0)
 	{
-		ft_printf("  *", tr->ttl);
+		ft_printf(" *", tr->ttl);
 		return ;
 	}
 	gettimeofday(&tr->aft, NULL);

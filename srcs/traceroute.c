@@ -7,7 +7,7 @@ static void	read_one(t_tr *tr, char *sbuf, t_recv_pckt *r_pckt)
 
 	last_ip = NULL;
 	n = -1;
-	ft_printf("%2d", tr->ttl);
+	ft_printf("%2d ", tr->ttl);
 	while (++n < 3)
 	{
 		send_msg(sbuf);
