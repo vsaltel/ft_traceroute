@@ -10,8 +10,8 @@ static int	check_options(t_tr *tr)
 		return (return_error("ft_traceroute: illegal packet size\n", 1));
 	if (tr->max_ttl <= 0 || tr->max_ttl > 255)
 		return (return_error("ft_traceroute: max hops cannot be more than 255\n", 1));
-	if (tr->nqueries < 1 || tr->nqueries > 10)
-		return (return_error("ft_traceroute: no more than 10 or less than 1 probes per hop\n", 1));
+	if (tr->nqueries > 10)
+		return (return_error("ft_traceroute: no more than 10 probes per hop\n", 1));
 	return (0);
 }
 
@@ -28,6 +28,10 @@ static int	set_option(t_tr *tr, char **av,
 		tr->max_ttl = ft_atoi(av[++(*n)]);
 	else if (av[*n][x] == 'q')
 		tr->nqueries = ft_atoi(av[++(*n)]);
+	else if (av[*n][x] == 't')
+		tr->tos = ft_atoi(av[++(*n)]);
+	else if (av[*n][x] == 'w')
+		tr->wait_time = ft_atoi(av[++(*n)]);
 	else
 	{
 		dprintf(2, "ft_traceroute: invalid option -- '%c'\n", av[*n][x]);
@@ -44,7 +48,8 @@ static int	set_option_loop(t_tr *tr, int ac,
 	x = 0;
 	while (av[*n][++x])
 	{
-		if (av[*n][x] == 'f' || av[*n][x] == 'm' || av[*n][x] == 'q')
+		if (av[*n][x] == 'f' || av[*n][x] == 'm' || av[*n][x] == 'q'
+			|| av[*n][x] == 't' || av[*n][x] == 'w')
 		{
 			if (av[*n][x + 1])
 				return (1);

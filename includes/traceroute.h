@@ -51,7 +51,9 @@ typedef struct s_tr
 	int				q;
 	int				d;
 	int				df_bit;
-	int				nqueries;
+	int				tos;
+	unsigned int	nqueries;
+	unsigned int	wait_time;
 	int				ttl;
 	int				max_ttl;
 	int				count_max;
@@ -126,7 +128,7 @@ void			send_msg(void *pckt);
 ** srcs/socket.c
 */
 
-int				set_socket(void);
+int				set_socket(t_tr *tr);
 
 /*
 ** srcs/print.c

@@ -1,6 +1,6 @@
 #include "traceroute.h"
 
-int	set_socket(void)
+int	set_socket(t_tr *tr)
 {
 	int	sock;
 	int	on;
@@ -14,7 +14,7 @@ int	set_socket(void)
 	}
 	on = 1;
 	setsockopt(sock, IPPROTO_IP, IP_HDRINCL, &on, sizeof(int));
-    timeout.tv_sec = 1;
+    timeout.tv_sec = tr->wait_time;
     timeout.tv_usec = 0;
 	setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO, (char *)&timeout, sizeof(timeout));
 	return (sock);

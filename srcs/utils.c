@@ -24,7 +24,7 @@ unsigned short	checksum(void *b, int len)
 void	print_usage(void)
 {
 	dprintf(2, "usage: ft_traceroute [-hF] "
-		"[-f first ttl] [-m max ttl] [-q nqueries] host [packet len]\n");
+		"[-f first ttl] [-m max ttl] [-q nqueries] [-t tos] [-w waittimes] host [packet len]\n");
 }
 
 int		return_error(char *err, int val)
