@@ -18,8 +18,8 @@ static void	print_received(t_tr *tr, char *recv_ip, char **last_ip)
 	name = recv_ip;
 	if (tr->fqdn)
 		name = tr->fqdn;
-	time = tr->aft.tv_sec * 1000.0 + tr->aft.tv_usec / 1000.0;
-	time = time - (tr->bef.tv_sec * 1000.0 + tr->bef.tv_usec / 1000.0);
+	time = tr->aft.tv_sec * 10000.0 + tr->aft.tv_usec / 10000.0;
+	time = time - (tr->bef.tv_sec * 10000.0 + tr->bef.tv_usec / 10000.0);
 	set_rtt(tr, time);
 	if (!*last_ip || ft_strcmp(recv_ip, *last_ip))
 		ft_printf(" %s (%s)  %.2f ms ", name, recv_ip, time);
