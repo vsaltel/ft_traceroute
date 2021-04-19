@@ -18,7 +18,7 @@ static void	print_received(t_tr *tr, char *recv_ip, char **last_ip)
 	name = recv_ip;
 	if (tr->fqdn)
 		name = tr->fqdn;
-	printf(" time %ld %f  ", (tr->aft.tv_usec - tr->bef.tv_usec) ,((double)tr->aft.tv_usec - (double)tr->bef.tv_usec));
+	printf(" time %ld %f  ", (tr->aft.tv_usec - tr->bef.tv_usec) ,((double)tr->aft.tv_usec - (double)tr->bef.tv_usec) / 1000.0);
 	time = tr->aft.tv_sec * 1000.0 + tr->aft.tv_usec / 1000.0;
 	time = time - (tr->bef.tv_sec * 1000.0 + tr->bef.tv_usec / 1000.0);
 	set_rtt(tr, time);
