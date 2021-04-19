@@ -10,7 +10,7 @@ void	set_send_pckt(t_send_pckt *pckt)
 		pckt->msg[i] = (char)i;
 	pckt->ip.ip_v = 4;
 	pckt->ip.ip_hl = 5;
-	pckt->ip.ip_tos = tr->tos;
+	pckt->ip.ip_tos = g_tr.tos;
 	pckt->ip.ip_len = sizeof(struct ip) + sizeof(struct icmp);
 	pckt->ip.ip_id = g_tr.pid;
 	pckt->ip.ip_off = g_tr.df_bit;

@@ -2,16 +2,17 @@
 
 static void	read_one(t_tr *tr, char *sbuf, t_recv_pckt *r_pckt)
 {
-	char		*last_ip;
-	int			n;
+	char			*last_ip;
+	unsigned int	n;
 
 	last_ip = NULL;
-	n = -1;
+	n = 0;
 	printf("%2d ", tr->ttl);
-	while (++n < tr->nqueries)
+	while (n < tr->nqueries)
 	{
 		send_msg(sbuf);
 		recv_msg(tr, r_pckt, &last_ip);
+		n++;
 	}
 	printf("\n");
 	free(last_ip);
