@@ -17,10 +17,6 @@ void	init_tr(t_tr *tr)
 	tr->ttl = 1;
 	tr->max_ttl = DEF_TTL_MAX;
 	tr->count_max = -1;
-	tr->rtt_min = -1;
-	tr->rtt_max = -1;
-	tr->rtt_sum = 0;
-	tr->rtt_sum_sq = 0;
 	tr->msg_sent = 0;
 	tr->msg_recv_count = 0;
 	tr->fqdn = NULL;
