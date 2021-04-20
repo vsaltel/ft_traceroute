@@ -20,7 +20,7 @@ static int	set_option(t_tr *tr, char **av,
 {
 	if (av[*n][x] == 'h')
 		tr->h = 1;
-	if (av[*n][x] == 'F')
+	else if (av[*n][x] == 'F')
 		tr->df_bit = 0;
 	else if (av[*n][x] == 'f')
 		tr->ttl = ft_atoi(av[++(*n)]);
@@ -86,7 +86,7 @@ int	get_args(t_tr *tr, int ac, char **av)
 			tr->datalen = ft_atoi(av[n]);
 		}
 		else
-			tr->dest_name = strdup(av[n]);
+			tr->dest_name = ft_strdup(av[n]);
 	}
 	if (check_options(tr))
 		return (1);

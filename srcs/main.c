@@ -27,6 +27,7 @@ int	main(int argc, char **argv)
 	if (get_args(&g_tr, argc, argv))
 	{
 		print_usage();
+		free_args(&g_tr);
 		return (-1);
 	}
 	if (g_tr.h)
