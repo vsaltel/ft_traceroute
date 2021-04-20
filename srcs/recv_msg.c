@@ -1,15 +1,5 @@
 #include "traceroute.h"
 
-static void	set_rtt(t_tr *tr, double time)
-{
-	if (tr->rtt_min > time || tr->rtt_min == -1)
-		tr->rtt_min = time;
-	if (tr->rtt_max < time || tr->rtt_max == -1)
-		tr->rtt_max = time;
-	tr->rtt_sum += time;
-	tr->rtt_sum_sq += time * time;
-}
-
 static void	print_received(t_tr *tr, char *recv_ip, char **last_ip)
 {
 	double	time;
@@ -20,7 +10,6 @@ static void	print_received(t_tr *tr, char *recv_ip, char **last_ip)
 		name = tr->fqdn;
 	time = tr->aft.tv_sec * 1000.0 + tr->aft.tv_usec / 1000.0;
 	time = time - (tr->bef.tv_sec * 1000.0 + tr->bef.tv_usec / 1000.0);
-	set_rtt(tr, time);
 	if (!*last_ip || ft_strcmp(recv_ip, *last_ip))
 		printf(" %s (%s)  %.2f ms ", name, recv_ip, time);
 	else
