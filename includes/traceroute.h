@@ -7,7 +7,6 @@
 # define DEF_TTL_MAX 30
 # define RECV_TIMEOUT 1
 
-# include <errno.h>
 # include <stdio.h>
 # include <signal.h>
 # include <netdb.h>
@@ -47,9 +46,6 @@ typedef struct s_tr
 {
 	int				state;
 	int				h;
-	int				v;
-	int				q;
-	int				d;
 	int				df_bit;
 	int				tos;
 	unsigned int	nqueries;
@@ -57,15 +53,9 @@ typedef struct s_tr
 	int				ttl;
 	int				max_ttl;
 	int				count_max;
-	struct timeval	launch_time;
 	struct timeval	bef;
 	struct timeval	aft;
-	double			rtt_min;
-	double			rtt_max;
-	double			rtt_sum;
-	double			rtt_sum_sq;
 	int				msg_sent;
-	int				msg_count;
 	int				msg_recv_count;
 	char			*fqdn;
 	char			*dest_name;
@@ -131,17 +121,10 @@ void			send_msg(void *pckt);
 int				set_socket(t_tr *tr);
 
 /*
-** srcs/print.c
-*/
-
-void			print_final_stats(t_tr *tr);
-
-/*
 ** srcs/signal.c
 */
 
 void			catch_sigint(int signal);
-void			catch_sigalrm(int signal);
 
 /*
 ** srcs/utils.c

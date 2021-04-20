@@ -9,14 +9,11 @@ void	free_args(t_tr *tr)
 
 void	init_tr(t_tr *tr)
 {
-	tr->v = 0;
 	tr->h = 0;
-	tr->q = 0;
-	tr->d = 0;
 	tr->df_bit = ntohs(IP_DF);
 	tr->nqueries = 3;
 	tr->tos = 0;
-	tr->wait_time = 0;
+	tr->wait_time = 1;
 	tr->ttl = 1;
 	tr->max_ttl = DEF_TTL_MAX;
 	tr->count_max = -1;
@@ -25,7 +22,6 @@ void	init_tr(t_tr *tr)
 	tr->rtt_sum = 0;
 	tr->rtt_sum_sq = 0;
 	tr->msg_sent = 0;
-	tr->msg_count = 0;
 	tr->msg_recv_count = 0;
 	tr->fqdn = NULL;
 	tr->dest_name = NULL;

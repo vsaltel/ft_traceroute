@@ -36,7 +36,6 @@ static int	read_loop(t_tr *tr)
 			return (-4);
 		s_pckt->ip.ip_ttl = tr->ttl;
 		read_one(tr, sbuf, &r_pckt);		
-		tr->msg_count++;
 		tr->count_max--;
 		tr->ttl++;
 	}
@@ -64,8 +63,6 @@ int	traceroute(t_tr *tr)
 	struct addrinfo	*info;
 	int				ret;
 
-	gettimeofday(&tr->launch_time, NULL);
-	tr->bef = tr->launch_time;
 	info = get_addr_info(tr);
 	if (!info)
 		return (-2);

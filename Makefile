@@ -23,7 +23,6 @@ FILES	=	main.c				\
 			rev_dns.c			\
 			conv_addr.c			\
 			utils.c				\
-			print.c				\
 			signal.c			\
 			args.c				\
 			args_utils.c
