@@ -22,10 +22,10 @@ static void	read_one(t_tr *tr, char *sbuf, t_recv_pckt *r_pckt)
 static int	read_loop(t_tr *tr)
 {
 	t_recv_pckt	r_pckt;
-	t_send_pckt *s_pckt;
+	t_send_pckt	*s_pckt;
 	char		sbuf[BUFSIZE];
 
-	s_pckt = (t_send_pckt *)sbuf;	
+	s_pckt = (t_send_pckt *)sbuf;
 	tr->state = 1;
 	signal(SIGINT, &catch_sigint);
 	set_send_pckt(s_pckt);
@@ -35,7 +35,7 @@ static int	read_loop(t_tr *tr)
 		if (!tr->sockfd || tr->sockfd < 0)
 			return (-4);
 		s_pckt->ip.ip_ttl = tr->ttl;
-		read_one(tr, sbuf, &r_pckt);		
+		read_one(tr, sbuf, &r_pckt);
 		tr->count_max--;
 		tr->ttl++;
 	}

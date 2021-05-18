@@ -25,7 +25,7 @@ void	set_send_pckt(t_send_pckt *pckt)
 	pckt->icmp.icmp_seq = g_tr.msg_sent;
 	pckt->icmp.icmp_cksum = 0;
 	pckt->icmp.icmp_cksum = checksum((u_short *)&pckt->icmp,
-		sizeof(struct icmp) + g_tr.datalen);
+			sizeof(struct icmp) + g_tr.datalen);
 }
 
 void	send_msg(void *pckt)

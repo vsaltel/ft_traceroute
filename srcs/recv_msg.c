@@ -13,7 +13,7 @@ static void	print_received(t_tr *tr, char *recv_ip, char **last_ip)
 	if (!*last_ip || ft_strcmp(recv_ip, *last_ip))
 		printf(" %s (%s)  %.2f ms ", name, recv_ip, time);
 	else
-		printf(" %.2f ms ", time); 
+		printf(" %.2f ms ", time);
 	if (last_ip && *last_ip)
 		free(*last_ip);
 	*last_ip = recv_ip;

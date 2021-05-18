@@ -5,13 +5,17 @@ static int	check_options(t_tr *tr)
 	if (!tr->dest_name)
 		return (1);
 	if (tr->ttl <= 0 || tr->ttl > 255 || tr->ttl >= tr->max_ttl)
-		return (return_error("ft_traceroute: first hop out of range\n", 1));
+		return (return_error("ft_traceroute: "
+				"first hop out of range\n", 1));
 	if (tr->datalen < 0 || tr->datalen > BUFSIZE)
-		return (return_error("ft_traceroute: illegal packet size\n", 1));
+		return (return_error("ft_traceroute: "
+				"illegal packet size\n", 1));
 	if (tr->max_ttl <= 0 || tr->max_ttl > 255)
-		return (return_error("ft_traceroute: max hops cannot be more than 255\n", 1));
+		return (return_error("ft_traceroute: "
+				"max hops cannot be more than 255\n", 1));
 	if (tr->nqueries > 10)
-		return (return_error("ft_traceroute: no more than 10 probes per hop\n", 1));
+		return (return_error("ft_traceroute: "
+				"no more than 10 probes per hop\n", 1));
 	return (0);
 }
 
@@ -55,8 +59,9 @@ static int	set_option_loop(t_tr *tr, int ac,
 				return (1);
 			if (*n + 1 == ac)
 			{
-				dprintf(2, "ft_traceroute: option requires an argument -- '%c'\n",
-				av[*n][x]);
+				dprintf(2, "ft_traceroute: "
+					"option requires an argument -- '%c'\n",
+					av[*n][x]);
 				return (1);
 			}
 			return (set_option(tr, av, n, x));
