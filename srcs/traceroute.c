@@ -30,7 +30,7 @@ static int	read_loop(t_tr *tr)
 	signal(SIGINT, &catch_sigint);
 	set_send_pckt(s_pckt);
 	tr->sockfd = set_socket(tr);
-	while (tr->ttl < tr->max_ttl && tr->state && tr->count_max)
+	while (tr->ttl <= tr->max_ttl && tr->state && tr->count_max)
 	{
 		if (!tr->sockfd || tr->sockfd < 0)
 			return (-4);

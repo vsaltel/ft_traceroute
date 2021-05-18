@@ -4,7 +4,7 @@ static int	check_options(t_tr *tr)
 {
 	if (!tr->dest_name)
 		return (1);
-	if (tr->ttl <= 0 || tr->ttl > 255 || tr->ttl >= tr->max_ttl)
+	if (tr->ttl <= 0 || tr->ttl > 255 || tr->ttl > tr->max_ttl)
 		return (return_error("ft_traceroute: "
 				"first hop out of range\n", 1));
 	if (tr->datalen < 0 || tr->datalen > BUFSIZE)

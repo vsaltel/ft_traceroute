@@ -3,6 +3,7 @@ tags
 objs
 *.sh
 *.swp
+rendu
 
 # Prerequisites
 *.d
